@@ -7,18 +7,6 @@ class TreeNode:
         self.left = left
         self.right = right
 
-    
-        
-    def inorder_list(self, node, pyList):
-
-        if node is None:
-            return None
-        else:
-            leftNode = self.inorder_list(temp.left, pyList)
-            pyList.append(temp.key)
-            rightNode = self.inorder_list(temp.right, pyList)
-       
-        return pyList
 class BinarySearchTree:
 
     def __init__(self): # Returns empty BST
@@ -111,8 +99,8 @@ class BinarySearchTree:
         if Node is None:
             return -1
        
-        leftNode = self.tree_height_helper(node.left)
-        rightNode = self.tree_height_helper(node.right)
+        leftNode = self.tree_height_helper(Node.left)
+        rightNode = self.tree_height_helper(Node.right)
         
         if leftNode > rightNode:
             return leftNode + 1
@@ -129,24 +117,66 @@ class BinarySearchTree:
       
         return self.tree_height_helper(temp)
 
+    def inorder_list_helper(self, temp, pyList):
+
+        if temp:
+
+            pyList.append(temp.key)
+            pyList = self.inorder_list_helper(temp.left, pyList)
+            pyList = self.inorder_list_helper(temp.right, pyList)
+       
+        return pyList
 
     def inorder_list(self): # return Python list of BST keys representing in-order traversal of BST
         
-        temp = self.root
-
-        if self.is_empty:
+        if self.is_empty():
             return []
-
+        
+        temp = self.root
         pyList = []
-        return self.inorder_list(temp, pyList)
+        return self.inorder_list_helper(temp, pyList)
+
+    def preorder_list_helper(self, temp, pyList):
+
+        if temp:
+            pyList.append(temp.key)
+            leftNode = self.preorder_list_helper(temp.left, pyList)
+            rightNode = self.preorder_list_helper(temp.right, pyList)
+
+        return pyList
 
     def preorder_list(self):  # return Python list of BST keys representing pre-order traversal of BST
-        pass
         
+        if self.is_empty():
+            return []
+        
+        temp = self.root
+        pyList = []
+        return self.preorder_list_helper(temp, pyList)
+
    
     def level_order_list(self):  # return Python list of BST keys representing level-order traversal of BST
         # You MUST use your queue_array data structure from lab 3 to implement this method
         q = Queue(25000) # Don't change this!
-        pass
         
+        pyList = []
+        temp = self.root
+
+        if self.is_empty():
+            return pyList
+
+        q.enqueue(temp)
+       
+        while not q.is_empty():
+            
+            temp = q.dequeue()
+            pyList.append(temp.key)
+            
+            if temp.left is not None:
+                q.enqueue(temp.left)
+           
+            if temp.right is not None:
+                q.enqueue(temp.right)
+        
+        return pyList
 
