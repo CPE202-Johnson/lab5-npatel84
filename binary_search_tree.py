@@ -59,14 +59,20 @@ class BinarySearchTree:
                 return True
             
             elif temp.key < key:
-                temp.right = tempNode
-                return True
-            #temp = temp.right
+                
+                if temp.right is None:
+                    temp.right = tempNode
+                    return True
+                
+                temp = temp.right
             
             elif key < temp.key:
-                temp.left = tempNode
-                break
-            temp = temp.left
+
+                if temp.left is None:
+                    temp.left = tempNode
+                    return True
+                    
+                temp = temp.left
             
     def find_min(self): # returns a tuple with min key and data in the BST
         # returns None if the tree is empty
