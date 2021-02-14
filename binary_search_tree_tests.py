@@ -19,9 +19,8 @@ class TestLab4(unittest.TestCase):
     def test_search(self):
 
         bst = BinarySearchTree()
-        bst.insert(1)
-        bst.insert(2)
-        bst.search(2)
+        self.assertTrue(bst.is_empty())
+
 
 if __name__ == '__main__': 
     unittest.main()
