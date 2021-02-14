@@ -71,7 +71,7 @@ class BinarySearchTree:
                 if temp.left is None:
                     temp.left = tempNode
                     return True
-                    
+
                 temp = temp.left
             
     def find_min(self): # returns a tuple with min key and data in the BST
@@ -127,8 +127,8 @@ class BinarySearchTree:
 
         if temp:
 
-            pyList.append(temp.key)
             pyList = self.inorder_list_helper(temp.left, pyList)
+            pyList.append(temp.key)
             pyList = self.inorder_list_helper(temp.right, pyList)
        
         return pyList
@@ -145,9 +145,10 @@ class BinarySearchTree:
     def preorder_list_helper(self, temp, pyList):
 
         if temp:
+            
             pyList.append(temp.key)
-            leftNode = self.preorder_list_helper(temp.left, pyList)
-            rightNode = self.preorder_list_helper(temp.right, pyList)
+            self.preorder_list_helper(temp.left, pyList)
+            self.preorder_list_helper(temp.right, pyList)
 
         return pyList
 
