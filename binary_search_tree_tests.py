@@ -16,5 +16,12 @@ class TestLab4(unittest.TestCase):
         self.assertEqual(bst.preorder_list(), [10])
         self.assertEqual(bst.level_order_list(), [10])
 
+    def test_search(self):
+
+        bst = BinarySearchTree()
+        bst.insert(1)
+        bst.insert(2)
+        bst.search(2)
+
 if __name__ == '__main__': 
     unittest.main()
