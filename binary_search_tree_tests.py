@@ -9,6 +9,7 @@ class TestLab4(unittest.TestCase):
         bst.insert(10, 'stuff')
         self.assertTrue(bst.search(10))
         self.assertEqual(bst.find_min(), (10, 'stuff'))
+        self.assertEqual(bst.search(1), False)
         bst.insert(10, 'other')
         self.assertEqual(bst.find_max(), (10, 'other'))
         self.assertEqual(bst.tree_height(), 0)
